@@ -26,7 +26,7 @@ func insertionSort(a []float64) time.Duration{
 	start := time.Now()
 	//defer fmt.Printf("insertionSort cost %d ns", time.Since(start)/time.Nanosecond)
 
-	for i:= 0; i < len(a); i++ {
+	for i:= 1; i < len(a); i++ {
 		for j := i; j > 0 && a[j] < a[j-1]; j-- {
 			a[j], a[j-1] = a[j-1], a[j]
 		}
@@ -37,7 +37,7 @@ func insertionSort(a []float64) time.Duration{
 }
 
 func insertionSortImprove(a []int){
-	for i:= 0; i < len(a); i++ {
+	for i:= 1; i < len(a); i++ {
 		for j := i; j > 0; j-- {
 			if a[j] < a[i] || j == 0{
 

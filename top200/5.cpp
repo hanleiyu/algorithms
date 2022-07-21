@@ -1,6 +1,52 @@
 #include <iostream>
 #include <string>
+#include <algorithm>
 using namespace std;
+
+
+class Solution {
+public:
+    string longestPalindrome(string s) {
+        int size = s.size();
+        if(size == 0 || size == 1){
+            return s;
+        }
+        int left = 0;
+        int right = 0;
+        if(size % 2 == 0){
+            right = size / 2;
+            left = right - 1;
+        }else{
+            left = size / 2 - 1;
+            right = left + 2;
+        }
+        while(s[left] == s[right] && left >= 0 && right < size){
+            left --;
+            right ++;
+        }
+        string res = s.substr(left + 1, right - left - 1);
+        string resL = longestPalindrome(s.substr(0, left + 1));
+        string resR = "";
+        if(right < size){
+            string resR = longestPalindrome(s.substr(right));
+        }        
+        int max_size = max(res.size(), max(resL.size(), resR.size()));
+        if(res.size() == max_size){
+            return res;
+        }else if (resL.size() == max_size){
+            return resL;
+        }else{
+            return resR;
+        }
+    }
+};
+
+int main(){
+    string s = "bb";
+    Solution ex;
+    cout << ex.longestPalindrome(s);
+    return 0;
+}
 
 // class Solution {
 // public:
